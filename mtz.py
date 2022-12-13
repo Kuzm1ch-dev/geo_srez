@@ -7,11 +7,8 @@ class rho:
         self.file = open(file_path, 'r')
 
         self.mas_n = list(map(int, self.file.readline().strip().split()))
-        print(self.mas_n)
         self.h_z = list(map(int, self.file.readline().strip().split()))
-        print(self.h_z)
         self.h_y = list(map(int, self.file.readline().strip().split()))
-        print(self.h_y)
         self.rho = np.empty((len(self.h_y), len(self.h_z)), dtype=float)
 
         for i in range(len(self.h_z)):

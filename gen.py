@@ -2,7 +2,9 @@
 import string
 
 import random 
-from datetime import datetime 
+from datetime import datetime
+
+from matplotlib.pyplot import step 
 
 
 class generator:
@@ -37,9 +39,7 @@ class generator:
         random.seed(datetime.now().timestamp() + i)
         x = random.randint(1,self.w - self.cw)
         y = random.randint(1,self.h  - self.ch)
-        value = 1
-
-        print(x,y)
+        value = self.step * random.randint(y,y+2)
 
         for i in range (self.w):
             for j in range (self.h):
