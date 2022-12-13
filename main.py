@@ -9,10 +9,16 @@ def main():
     
     print("Введите размерность: ")
     s = int(input())
-    print("Введите количество квадратов: ")
-    c = int(input())
+    print("Введите ширину Дайки : ")
+    w = int(input())
+    print("Введите высоту Дайки : ")
+    h = int(input())
 
-    g = generator(s,s,100,c)
+    if (w > s or h > s):
+        print("Размер Дайки превышает размерность")
+        exit(0)
+
+    g = generator(s,s,100,w,h)
     g.generate_file()
 
     data_analysed = rho('Data.txt') #Обрабатываем входные данные в отдельном классе
