@@ -13,12 +13,14 @@ def main():
     w = int(input())
     print("Введите высоту Дайки : ")
     h = int(input())
+    print("Введите значение Дайки : ")
+    v = int(input())
 
     if (w > s or h > s):
         print("Размер Дайки превышает размерность")
         exit(0)
 
-    g = generator(s,s,100,w,h)
+    g = generator(s,s,100,w,h,v)
     g.generate_file()
 
     data_analysed = rho('Data.txt') #Обрабатываем входные данные в отдельном классе

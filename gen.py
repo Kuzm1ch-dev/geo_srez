@@ -8,12 +8,13 @@ from matplotlib.pyplot import step
 
 
 class generator:
-    def __init__(self, w,h,step, cw,ch):
+    def __init__(self, w,h,step, cw,ch,v):
         self.step = step
         self.w = w 
         self.h = h
         self.cw = cw
         self.ch = ch
+        self.v = v
     def generate_file(self):
         a = []
 
@@ -39,14 +40,12 @@ class generator:
         random.seed(datetime.now().timestamp() + i)
         x = random.randint(1,self.w - self.cw)
         y = random.randint(1,self.h  - self.ch)
-        value = self.step * random.randint(y,y+2)
+        value = self.v
 
         for i in range (self.w):
             for j in range (self.h):
                 if (i >= y and i < y + self.ch and i < self.h) and (j >= x and j < x + self.cw and j < self.w):
                     a[i+2][j] = value
-
-        #print(a)
 
         f = open("Data.txt", "w")
         with f:
