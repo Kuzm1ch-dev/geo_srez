@@ -1,10 +1,20 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mtz import rho
+from gen import generator
 
 
 
 def main():
+    
+    print("Введите размерность: ")
+    s = int(input())
+    print("Введите количество квадратов: ")
+    c = int(input())
+
+    g = generator(s,s,100,c)
+    g.generate_file()
+
     data_analysed = rho('Data.txt') #Обрабатываем входные данные в отдельном классе
 
     gs_kw = dict(width_ratios=[15,1])
