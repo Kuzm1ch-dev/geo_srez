@@ -9,18 +9,24 @@ def main():
     
     print("Введите размерность: ")
     s = int(input())
+    print("Введите сопротивление полупространства: ")
+    p = int(input())
     print("Введите ширину Дайки : ")
     w = int(input())
     print("Введите высоту Дайки : ")
     h = int(input())
     print("Введите значение Дайки : ")
     v = int(input())
+    print("Введите X позицию дайки: ")
+    x = int(input())
+    print("Введите Y позицию дайки: ")
+    y = int(input())
 
     if (w > s or h > s):
         print("Размер Дайки превышает размерность")
         exit(0)
 
-    g = generator(s,s,100,w,h,v)
+    g = generator(s,s,100,w,h,v,p,x,y)
     g.generate_file()
 
     data_analysed = rho('Data.txt') #Обрабатываем входные данные в отдельном классе
