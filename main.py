@@ -6,27 +6,17 @@ from gen import generator
 
 
 def main():
-    
+
     print("Введите размерность: ")
     s = int(input())
-    print("Введите сопротивление полупространства: ")
-    p = int(input())
-    print("Введите ширину Дайки : ")
-    w = int(input())
-    print("Введите высоту Дайки : ")
-    h = int(input())
-    print("Введите значение Дайки : ")
-    v = int(input())
-    print("Введите X позицию дайки: ")
-    x = int(input())
-    print("Введите Y позицию дайки: ")
-    y = int(input())
+    print("Введите сопротивление полупространства слоев (формат 300,400,500): ")
+    l = str(input()).split(",")
+    print("Введите угол разлома : ")
+    fi = int(input())
+    print("Введите смещение разлома : ")
+    offset = int(input())
 
-    if (w > s or h > s):
-        print("Размер Дайки превышает размерность")
-        exit(0)
-
-    g = generator(s,s,100,w,h,v,p,x,y)
+    g = generator(s,l,fi,offset)
     g.generate_file()
 
     data_analysed = rho('Data.txt') #Обрабатываем входные данные в отдельном классе
@@ -52,7 +42,7 @@ def main():
     fig1.colorbar(p, cax=cax)
     cax.set_ylabel(r"Сопротивление, $\rho$ [$Ом \times м$]", rotation=90)
     fig1.canvas.manager.set_window_title("Визуализация данных")
-    fig1.canvas.show()
+    fig1.canvas.draw()
 
     #Визуализировать кривые rho кажущегося
     fig2, (ax, cax) = plt.subplots(1, 2, figsize=(10, 5),  constrained_layout=True, gridspec_kw=gs_kw)

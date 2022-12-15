@@ -1,56 +1,55 @@
 
 import string
 
-import random 
+import math 
 from datetime import datetime
 
 from matplotlib.pyplot import step 
 
 
 class generator:
-    def __init__(self, w,h,step, cw,ch,v,p,x,y):
-        self.step = step
-        self.w = w 
-        self.h = h
-        self.cw = cw
-        self.ch = ch
-        self.v = v
-        self.p = p
-        self.x = x
-        self.y = y
+    def __init__(self, s,l,fi,offset):
+        self.s = s 
+        self.l = l
+        self.fi = fi
+        self.offset = offset
     def generate_file(self):
+
+        layer_count = len(self.l)
         a = []
 
 
         #Первые 2 строки хуй пойми что
         for i in range (2):
             row = []
-            for j in range (self.h):
+            for j in range (self.s):
                 row.insert(0,500)
             a.insert(len(a),row)
 
         
-        #Остальные self.h строки
+        #Остальные self.s строки
 
-        for i in range (self.w):
+        for i in range (self.s):
             row = []
-            for j in range (self.h):
-                row.insert(len(row)-1,self.p)
+            index = i // (int((self.s / layer_count)) + 1)
+            for j in range (self.s):
+                row.insert(len(row), self.l[index])
             a.insert(len(a),row)
 
-        #Квадрат
-
-        value = self.v
-
-        for i in range (self.w):
-            for j in range (self.h):
-                if (i >= (self.y-1) and i <  (self.y-1) + self.ch and i < self.h) and (j >=  (self.x-1) and j <  (self.x-1) + self.cw and j < self.w):
-                    a[i][j] = value
+        l = len(a)
+        for i in range (l):
+            x = (self.s-i) / math.tan((self.fi*(math.pi / 180))) + int((self.s-1) / 2)
+            for j in range (self.s):
+                if j < x:
+                    if(l - i - self.offset < 0 ):
+                        a[l - i][j] = a[0][j]
+                        continue
+                    a[l - i - 1][j] = a[l - i - self.offset][j]
 
         f = open("Data.txt", "w")
         with f:
-            f.write(f"{self.w} {self.h}"  + "\n")
+            f.write(f"{self.s} {self.s}"  + "\n")
             for r in a:
-                f.write(' '.join(str(i) for i in r) + "\n")
+                f.write('   '.join(str(i) for i in r) + "\n")
         f.close()
         pass
