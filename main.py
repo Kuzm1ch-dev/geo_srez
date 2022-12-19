@@ -23,6 +23,8 @@ def main():
 
     gs_kw = dict(width_ratios=[15,1])
 
+    plt.rcParams.update({'font.size': 22})
+
     #Вывод
     #Визуализация данных
     fig1, (ax, cax) = plt.subplots(1, 2, figsize=(10, 5),  constrained_layout=True, gridspec_kw=gs_kw)
@@ -45,9 +47,8 @@ def main():
     fig1.canvas.draw()
 
     #Визуализировать кривые rho кажущегося
-    fig2, (ax, cax) = plt.subplots(1, 2, figsize=(10, 5),  constrained_layout=True, gridspec_kw=gs_kw)
+    fig2, ax = plt.subplots(figsize=(10, 5))
 
-    cax.clear()
     ax.plot([i+1 for i in range(len(data_analysed.row_solutions))], data_analysed.row_solutions)
 
     ax.set_yscale('log')

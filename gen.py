@@ -17,15 +17,6 @@ class generator:
 
         layer_count = len(self.l)
         a = []
-
-
-        #Первые 2 строки хуй пойми что
-        for i in range (2):
-            row = []
-            for j in range (self.s):
-                row.insert(0,500)
-            a.insert(len(a),row)
-
         
         #Остальные self.s строки
 
@@ -38,7 +29,7 @@ class generator:
 
         l = len(a)
         for i in range (l):
-            x = (self.s-i) / math.tan((self.fi*(math.pi / 180))) + int((self.s-1) / 2)
+            x = (self.s-i) / math.tan((self.fi*(math.pi / 180))) + int((self.s-1) / 3)
             for j in range (self.s):
                 if j < x:
                     if(l - i - self.offset < 0 ):
